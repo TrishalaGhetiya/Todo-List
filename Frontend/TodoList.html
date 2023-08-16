@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="container bg-light mt-4">
+    <form class="signup-form" id="my-form">
+        <div class="form-header bg-info">
+            <div class="form-label mt-2">
+                <h1>Todo List</h1>
+            </div>
+        </div>
+        <div class="form-body">
+            <div class="msg"></div>
+            <div class="form-label">Todo Item</div>
+            <input type="text" name="item" class="form-control" id="item">
+            <div class="form-label">Description</div>
+            <input type="text" name="description" id="description" class="form-control">
+            <input type="hidden" name="isChecked" id="isChecked" value="no">
+        </div>
+            
+        <div class="form-footer mt-4">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </form>
+    <div>
+        <h6>Todo Remaining</h6>
+        <ul id="todoRemaining"></ul></div>
+    <div>
+        <h6>Todo Done</h6>
+        <ul id="todoDone"></ul></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+<script src="todoList.js"></script>
+</body>
+</html>
