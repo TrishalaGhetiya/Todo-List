@@ -8,19 +8,23 @@ const todoItemList = [];
 
 myForm.addEventListener("submit",onsubmit);
 todoRemaining.addEventListener('click',removeItem);
+window.addEventListener("DOMContentLoaded", loadPage);
 
-window.addEventListener("DOMContentLoaded", () => {
-    axios.get('http://localhost:4000')
-            .then(res => {
-                console.log(res.data);
-                for(let i=0;i<res.data.length;i++)
-                {
-                    showTodoListOnScreen(res.data[i]);
-                    todoItemList.push(res.data[i]);
-                }
-            })
-            .catch(err => console.log(err))
-})
+async function loadPage(){
+    try{
+        const res = await axios.get('http://localhost:4000')
+        console.log(res.data);
+        for(let i=0;i<res.data.length;i++)
+        {
+            showTodoListOnScreen(res.data[i]);
+            todoItemList.push(res.data[i]);
+        }
+    }
+    catch(err){
+         console.log(err);
+    }
+}
+
 
 function showTodoListOnScreen(data){
     if(data.isChecked==='no')
@@ -84,7 +88,7 @@ async function onsubmit(e)
             isChecked : isChecked.value
         };
         try{
-            const res = axios.post('http://localhost:4000/add-item', todo);
+            const res = await axios.post('http://localhost:4000/add-item', todo);
             console.log('Todo added');
         }
         catch(err) {
@@ -95,7 +99,7 @@ async function onsubmit(e)
     }
 }
 
-function removeItem(e)
+async function removeItem(e)
     {
         if(e.target.classList.contains('delete'))
         {
@@ -108,7 +112,7 @@ function removeItem(e)
                     if(todoItemList[i].item === delItemName)
                     {
                         try{
-                            const res = axios.delete(`http://localhost:4000/delete-item/${todoItemList[i].id}`);
+                            const res = await axios.delete(`http://localhost:4000/delete-item/${todoItemList[i].id}`);
                             console.log(res);
                         }
                         catch(err){
@@ -139,7 +143,7 @@ function removeItem(e)
                         };
                         console.log(todo);
                         try{
-                            const res = axios.put(`http://localhost:4000/done-todo/${todoItemList[i].id}`, todo)
+                            const res = await axios.put(`http://localhost:4000/done-todo/${todoItemList[i].id}`, todo)
                             console.log(res);
                         }
                         catch(err){

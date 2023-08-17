@@ -1,7 +1,7 @@
 const Todo = require('../models/todo');
 
+//Add Items to the database
 exports.postAddTodoItem = (req, res, next) => {
-    //console.log(req.body.isChecked);
     const item = req.body.item;
     const description = req.body.description;
     const isChecked = req.body.isChecked;
@@ -17,6 +17,7 @@ exports.postAddTodoItem = (req, res, next) => {
     .catch(err => console.log(err));
 }
 
+//Get items when page is loaded
 exports.getAddTodoItem = (req, res, next) => {
     Todo.findAll()
     .then(items => {
@@ -26,6 +27,7 @@ exports.getAddTodoItem = (req, res, next) => {
     .catch(err => console.log(err));
 }
 
+//Update items from remaining to done
 exports.editTodoItem = (req, res, next) => {
     const itemId = req.params.id;
     Todo.findByPk(itemId)
@@ -40,6 +42,7 @@ exports.editTodoItem = (req, res, next) => {
         .catch(err => console.log(err));
 }
 
+//delete items
 exports.deleteTodoItem = (req, res, next) => {
     const itemId = req.params.id;
     Todo.findByPk(itemId)
